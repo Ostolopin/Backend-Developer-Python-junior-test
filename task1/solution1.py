@@ -1,19 +1,19 @@
 def strict(func):
     def wrapper(*args):
-        # Ïîëó÷àåì àííîòàöèè òèïîâ è èìåíà ïàðàìåòðîâ
+        # ÐŸÐ¾Ð»ÑƒÑ‡Ð°ÐµÐ¼ Ð°Ð½Ð½Ð¾Ñ‚Ð°Ñ†Ð¸Ð¸ Ñ‚Ð¸Ð¿Ð¾Ð² Ð¸ Ð¸Ð¼ÐµÐ½Ð° Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð²
         annotations = func.__annotations__
         param_names = func.__code__.co_varnames
         
-        # Ïðîâåðÿåì êàæäûé ïåðåäàííûé àðãóìåíò
+        # ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ ÐºÐ°Ð¶Ð´Ñ‹Ð¹ Ð¿ÐµÑ€ÐµÐ´Ð°Ð½Ð½Ñ‹Ð¹ Ð°Ñ€Ð³ÑƒÐ¼ÐµÐ½Ñ‚
         for i, (arg, name) in enumerate(zip(args, param_names)):
-            if name in annotations:  # Åñëè åñòü àííîòàöèÿ òèïà
+            if name in annotations:  # Ð•ÑÐ»Ð¸ ÐµÑÑ‚ÑŒ Ð°Ð½Ð½Ð¾Ñ‚Ð°Ñ†Ð¸Ñ Ñ‚Ð¸Ð¿Ð°
                 expected_type = annotations[name]
-                if not isinstance(arg, expected_type):  # Ñðàâíèâàåì òèï
+                if not isinstance(arg, expected_type):  # Ð¡Ñ€Ð°Ð²Ð½Ð¸Ð²Ð°ÐµÐ¼ Ñ‚Ð¸Ð¿
                     raise TypeError(
                         f"Argument '{name}' at position {i} must be {expected_type.__name__}, "
                         f"but got {type(arg).__name__}."
                     )
-        # Âûçûâàåì îðèãèíàëüíóþ ôóíêöèþ, åñëè âñå ïðîâåðêè ïðîøëè
+        # Ð’Ñ‹Ð·Ñ‹Ð²Ð°ÐµÐ¼ Ð¾Ñ€Ð¸Ð³Ð¸Ð½Ð°Ð»ÑŒÐ½ÑƒÑŽ Ñ„ÑƒÐ½ÐºÑ†Ð¸ÑŽ, ÐµÑÐ»Ð¸ Ð²ÑÐµ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÐ¸ Ð¿Ñ€Ð¾ÑˆÐ»Ð¸
         return func(*args)
     return wrapper
 
@@ -21,6 +21,6 @@ def strict(func):
 def sum_two(a: int, b: int) -> int:
     return a + b
 
-# Òåñòû
+# Ð¢ÐµÑÑ‚Ñ‹
 print(sum_two(1, 2))       # >>> 3
 print(sum_two(1, 2.4))     # >>> TypeError
